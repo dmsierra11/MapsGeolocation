@@ -1,0 +1,122 @@
+<resources>
+    <string name="app_name">GeoLocationDS</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña (optional)</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_register">Registro</string>
+    <string name="action_sign_in_facebook">Iniciar sesión con facebook</string>
+    <string name="action_sign_in_short">Inicia sesión</string>
+    <string name="error_invalid_email">El correo es inválido</string>
+    <string name="error_invalid_password">El correo es muy corto</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Debes llenar este campo</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--<string name="location_permission">GPS permission allows us to access location data. Please-->
+    <!--allow in App Settings for additional functionality.</string>-->
+    <string name="location_permission">Los permisos a GPS permiten acceso a los datos de ubicación.
+        Por favor conceda los permisos en la configuración de la app para funcionalidades adicionales.</string>
+
+
+    <string name="not_connected">API Cliente not connected</string>
+
+    <!--    Transitions -->
+    <string name="geofence_transition_entered">Entered</string>
+    <string name="geofence_transition_exited">Exited</string>
+    <string name="geofence_transition_dwell">Estas dentro</string>
+    <string name="unknown_geofence_transition">Unknown Transition</string>
+    <!--    Error strings -->
+    <string name="geofence_not_available">El servicio de Geofences no está disponible en este momento</string>
+    <string name="geofence_too_many_geofences">Su aplicación ha registrado demasiados Geofences</string>
+    <string name="geofence_too_many_pending_intents">
+        Ha agregado demasiados PendingIntents a addGeofences
+    </string>
+    <string name="unknown_geofence_error">
+        Error desconocido: El servicio de Geofences no está disponible en este momento
+    </string>
+    <string name="geofence_transition_invalid_type">
+    Error de transición: tipo de transición inválida %1$d
+    </string>
+    <string name="geofence_transition_notification_text">Tienes lugares cerca, échales un vistazo</string>
+
+    <!--Errors-->
+    <string name="error_session">Hubo un problema con la sesión</string>
+
+    <!--Number picker-->
+    <string name="weightTitle">Selecciona tu peso</string>
+    <string name="heightTitle">Selecciona tu estatura</string>
+    <string name="btnSetText">Seleccionar</string>
+    <string name="btnCancelText">Cancelar</string>
+    <string name="centimeterText">cm</string>
+    <string name="kilogramText">Kg</string>
+
+    <!-- Strings related to Settings -->
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!--Buttons-->
+    <string name="btnCancelUpper">CANCELAR</string>
+    <string name="heck_yes">CLARO QUE SI!</string>
+
+</resources>

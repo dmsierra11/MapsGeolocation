@@ -1,0 +1,149 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NavigationView">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:padding">@dimen/padding_button</item>
+        <item name="font">fonts/Lato-Black.ttf</item>
+    </style>
+
+    <style name="challenge_title">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingTop">@dimen/normal_padding</item>
+        <item name="android:paddingBottom">@dimen/normal_padding</item>
+        <item name="android:paddingLeft">@dimen/challenge_detail_padding</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/challenge_detail_title</item>
+        <item name="font">fonts/Righteous-Regular.ttf</item>
+    </style>
+
+    <style name="NavigationView">
+        <item name="android:listDivider">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="dialog_title">
+        <item name="android:textSize">@dimen/dialog_title_text</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:padding">@dimen/normal_padding</item>
+        <item name="font">fonts/Lato-Black.ttf</item>
+    </style>
+
+    <style name="primary_title">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/primary_title_size</item>
+        <item name="font">fonts/Righteous-Regular.ttf</item>
+    </style>
+
+    <style name="secondary_title">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/challenge_phrase_text</item>
+        <item name="font">fonts/Lato-Bold.ttf</item>
+    </style>
+
+    <style name="regular_text">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/challenge_phrase_text</item>
+        <item name="font">fonts/Lato-Regular.ttf</item>
+    </style>
+
+    <style name="text_options" parent="regular_text">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="regular_text_red">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/challenge_phrase_text</item>
+        <item name="font">fonts/Lato-Regular.ttf</item>
+    </style>
+
+    <style name="righteous_regular">
+        <item name="font">fonts/Righteous-Regular.ttf</item>
+    </style>
+
+    <!--Preview window-->
+    <style name="title_preview_window">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/info_title_text_size</item>
+        <item name="font">fonts/Lato-Black.ttf</item>
+    </style>
+
+    <style name="detail_preview_window">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/info_detail_text</item>
+        <item name="font">fonts/Lato-Bold.ttf</item>
+    </style>
+
+    <style name="detail_preview_window_bold">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/info_detail_text</item>
+        <item name="font">fonts/Lato-Bold.ttf</item>
+    </style>
+
+    <!--List of challenges-->
+    <style name="title_challenge_list">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/title_challenge_list</item>
+        <item name="font">fonts/Lato-Black.ttf</item>
+    </style>
+
+    <style name="detail_challenge_list">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/detail_challenge_list</item>
+        <item name="font">fonts/Lato-Regular.ttf</item>
+    </style>
+
+    <style name="detail_challenge_list_bold">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/detail_challenge_list</item>
+        <item name="font">fonts/Lato-Bold.ttf</item>
+    </style>
+
+    <style name="title_gray">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingTop">@dimen/normal_padding</item>
+        <item name="android:paddingBottom">@dimen/normal_padding</item>
+        <item name="android:paddingLeft">@dimen/challenge_detail_padding</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <!--<item name="android:textSize">@dimen/challenge_detail_title</item>-->
+        <item name="font">fonts/Lato-Regular.ttf</item>
+    </style>
+
+    <style name="gray_text" parent="regular_text">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+</resources>

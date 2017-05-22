@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#565656</color>
+    <color name="colorPrimaryDark">#1c1c1c</color>
+    <color name="colorAccent">#841c1d</color>
+    <color name="yellow_rating">#efe342</color>
+
+    <color name="blue_facebook">#3c4787</color>
+
+    <color name="colorGreenCreateChallenge">#04710d</color>
+    <color name="white">#FFFFFF</color>
+
+
+    <!--level colors-->
+    <color name="expert_color">#1b1c1b</color>
+    <color name="high_color">#a2150e</color>
+    <color name="pro_color">#ffb900</color>
+    <color name="easy_color">#8bb724</color>
+    <color name="medium_color">#ffff00</color>
+    <color name="colorExpertLevel">#1b1c1b</color>
+
+
+    <color name="blue_male">#637aff</color>
+    <color name="pink_female">#f07dff</color>
+
+</resources>
