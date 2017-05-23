@@ -20,6 +20,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.locationservices.R;
 import com.example.locationservices.model.Coords;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +74,6 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
 
         Log.d(TAG, "My location enabled " + mMap.isMyLocationEnabled());
 
-        //TODO: esconder lista hasta que lleguen los places
         presenter.getPlaces();
 
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
@@ -116,6 +117,24 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
             if (!mGeofencesAdded)
                 addGeofences();
         }
+    }
+
+    @Override
+    public void getRoutes(Place place) {
+        if (place != null) {
+            if (mCurrentLocation != null){
+                String destination = place.getCoords().getLatitude()+","+
+                        place.getCoords().getLongitude();
+                String origin = mCurrentLocation.getLatitude()+","+mCurrentLocation.getLongitude();
+                presenter.getRoutes(origin, destination, false);
+            }
+        }
+    }
+
+    @Override
+    public void drawRoutes(PolylineOptions polygonOptions) {
+        if (mMap != null)
+            mMap.addPolyline(polygonOptions);
     }
 
     /**

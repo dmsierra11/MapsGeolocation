@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface MenuPresenter {
     void getPlaces();
+    void getRoutes(String origin, String destination, boolean sensor);
 }
