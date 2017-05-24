@@ -50,9 +50,6 @@ public class MenuPresenterImpl implements MenuPresenter{
         }
         //Geofence
         menuView.populateGeofences(places);
-
-        if (!places.isEmpty())
-            menuView.getRoutes(places.get(0));
     }
 
     public void getRoutes(String origin, String destination, boolean sensor){

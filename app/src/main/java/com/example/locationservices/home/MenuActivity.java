@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.locationservices.R;
 import com.example.locationservices.model.Coords;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONException;
@@ -34,6 +35,7 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
     private static final String TAG = "MainActivity";
 
     private MenuPresenter presenter;
+    private Polyline polyline;
 
     /**
      * Activity methods
@@ -133,8 +135,10 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
 
     @Override
     public void drawRoutes(PolylineOptions polygonOptions) {
+        if (polyline != null)
+            polyline.remove();
         if (mMap != null)
-            mMap.addPolyline(polygonOptions);
+            polyline = mMap.addPolyline(polygonOptions);
     }
 
     /**
@@ -152,6 +156,7 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
             Location placeLoc = new Location("");
             placeLoc.setLongitude(place.getCoords().getLongitude());
             placeLoc.setLatitude(place.getCoords().getLatitude());
+            getRoutes(place);
             String distanceStr = "";
             if (mCurrentLocation != null)
                 distanceStr = getDistanceFromplace(placeLoc);
