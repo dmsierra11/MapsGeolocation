@@ -3,12 +3,14 @@ package com.example.locationservices.home;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.locationservices.FileManager;
 import com.example.locationservices.model.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +47,23 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_menu);
 
+        getDatabase();
+
         //Map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         presenter = new MenuPresenterImpl(this);
+    }
+
+    public void getDatabase(){
+        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
+        FileManager.copyAssets(this, dir);
+
+//        geoPackageFile = new File(dir, "rayos.geojson");
+
+        FileManager.readFromFile(this, "rayos.geojson");
     }
 
     /**

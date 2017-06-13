@@ -53,4 +53,7 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    //GeoJSON
+    compile 'com.cocoahero.android:geojson:1.0.1@jar'
 }
