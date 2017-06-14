@@ -6,4 +6,5 @@ package com.example.locationservices;
 
 public class Constants {
     public static final String API_BASE_URL = "https://maps.googleapis.com/maps/api/directions/";
+    public static String geoJsonFile = "areperas.geojson";
 }

@@ -1,5 +1,7 @@
 package com.example.locationservices.home;
 
+import android.app.Activity;
+
 import com.example.locationservices.model.Place;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -15,4 +17,5 @@ public interface MenuView {
     void populateGeofences(List<Place> places);
     void getRoutes(Place place);
     void drawRoutes(PolylineOptions polygonOptions);
+    Activity getActivityView();
 }

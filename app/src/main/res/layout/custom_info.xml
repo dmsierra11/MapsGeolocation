@@ -12,10 +12,28 @@
         android:layout_height="wrap_content"
         style="@style/title_preview_window"
         android:gravity="start"
-        android:text="Name of challenge"
+        android:text="Title"
         android:padding="@dimen/small_padding"
         android:layout_marginRight="@dimen/small_padding"
-        android:layout_marginEnd="@dimen/small_padding"/>
+        android:layout_marginEnd="@dimen/small_padding"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/title_preview_window"
+            android:gravity="center"
+            android:padding="@dimen/small_padding"
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_marginEnd="@dimen/small_padding"/>
+    </ScrollView>
 
     <TextView
         android:id="@+id/tv_proximity"

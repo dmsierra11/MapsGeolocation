@@ -1,5 +1,6 @@
 package com.example.locationservices.home;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
@@ -10,6 +11,12 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.cocoahero.android.geojson.Feature;
+import com.cocoahero.android.geojson.FeatureCollection;
+import com.cocoahero.android.geojson.GeoJSON;
+import com.cocoahero.android.geojson.GeoJSONObject;
+import com.cocoahero.android.geojson.Point;
+import com.cocoahero.android.geojson.Position;
 import com.example.locationservices.FileManager;
 import com.example.locationservices.model.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.locationservices.R;
 import com.example.locationservices.model.Coords;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONException;
@@ -37,6 +45,8 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
     private static final String TAG = "MainActivity";
 
     private MenuPresenter presenter;
+    private Polyline polyline;
+    private File geoPackageFile;
 
     /**
      * Activity methods
@@ -47,23 +57,12 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_menu);
 
-        getDatabase();
-
         //Map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         presenter = new MenuPresenterImpl(this);
-    }
-
-    public void getDatabase(){
-        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
-        FileManager.copyAssets(this, dir);
-
-//        geoPackageFile = new File(dir, "rayos.geojson");
-
-        FileManager.readFromFile(this, "rayos.geojson");
     }
 
     /**
@@ -96,6 +95,14 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
             @Override
             public void onMapClick(LatLng latLng) {
                 Log.d(TAG, "Map clicked");
+            }
+        });
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Place place = (Place) marker.getTag();
+                getRoutes(place);
             }
         });
     }
@@ -147,8 +154,16 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
 
     @Override
     public void drawRoutes(PolylineOptions polygonOptions) {
-        if (mMap != null)
-            mMap.addPolyline(polygonOptions);
+        if (polyline != null)
+            polyline.remove();
+        if (mMap != null){
+            polyline = mMap.addPolyline(polygonOptions);
+        }
+    }
+
+    @Override
+    public Activity getActivityView() {
+        return this;
     }
 
     /**
@@ -159,8 +174,8 @@ public class MenuActivity extends MapsActivity implements OnMapReadyCallback, Me
         @Override
         public View getInfoContents(Marker marker) {
             Place place = (Place) marker.getTag();
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(place.getCoords()
-                    .getLatitude(), place.getCoords().getLongitude()), zoomLevel));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(place.getCoords()
+                    .getLatitude(), place.getCoords().getLongitude())));
 
             //update proximity
             Location placeLoc = new Location("");

@@ -12,6 +12,7 @@ import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -67,7 +68,9 @@ public class FileManager {
 //    }
 
     public static void copyAssets(Context appContext, File dir) {
-        dir.mkdirs();
+
+        if (!dir.exists())
+            dir.mkdirs();
 
         AssetManager assetManager = appContext.getAssets();
         String[] files = null;
@@ -143,6 +146,38 @@ public class FileManager {
         catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ret;
+    }
+
+    public static String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+
+    public static String getStringFromFile (String filePath) {
+        File fl = new File(filePath);
+        FileInputStream fin = null;
+        String ret = "";
+        try {
+            fin = new FileInputStream(fl);
+            ret = convertStreamToString(fin);
+            fin.close();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

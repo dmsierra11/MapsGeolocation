@@ -2,6 +2,12 @@ package com.example.locationservices.home;
 
 import android.util.Log;
 
+import com.cocoahero.android.geojson.Feature;
+import com.cocoahero.android.geojson.FeatureCollection;
+import com.cocoahero.android.geojson.GeoJSON;
+import com.cocoahero.android.geojson.GeoJSONObject;
+import com.cocoahero.android.geojson.Point;
+import com.cocoahero.android.geojson.Position;
 import com.example.locationservices.API.APIService;
 import com.example.locationservices.API.RestClientPublic;
 import com.example.locationservices.API.classes.EndLocation_;
@@ -10,6 +16,10 @@ import com.example.locationservices.API.classes.Route;
 import com.example.locationservices.API.classes.RouteList;
 import com.example.locationservices.API.classes.StartLocation_;
 import com.example.locationservices.API.classes.Step;
+import com.example.locationservices.Constants;
+import com.example.locationservices.FileManager;
+import com.example.locationservices.R;
+import com.example.locationservices.model.Coords;
 import com.example.locationservices.model.Place;
 import com.example.locationservices.model.dummy.DummyContent;
 import com.google.android.gms.maps.model.LatLng;
@@ -17,6 +27,9 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONException;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,16 +56,47 @@ public class MenuPresenterImpl implements MenuPresenter{
 
     @Override
     public void getPlaces() {
-        List<Place> places = new ArrayList<>();
-        for (Place place: DummyContent.createPlaces()){
-            menuView.addMarker(place);
-            places.add(place);
-        }
+        List<Place> places;
+//        for (Place place: DummyContent.createPlaces()){
+//            menuView.addMarker(place);
+//            places.add(place);
+//        }
+        places = getDatabase();
         //Geofence
         menuView.populateGeofences(places);
+    }
 
-        if (!places.isEmpty())
-            menuView.getRoutes(places.get(0));
+    public List<Place> getDatabase(){
+        File dir = new File(menuView.getActivityView().getFilesDir(),
+                menuView.getActivityView().getString(R.string.app_name));
+        FileManager.copyAssets(menuView.getActivityView(), dir);
+
+        File geoPackageFile = new File(dir, Constants.geoJsonFile);
+
+        String jsonString = FileManager.getStringFromFile(geoPackageFile.getPath());
+
+        Log.d(TAG, jsonString);
+        ArrayList<Place> places = new ArrayList<>();
+        try {
+            GeoJSONObject geoJSON = GeoJSON.parse(jsonString);
+            if (geoJSON instanceof FeatureCollection){
+                for (Feature feature: ((FeatureCollection) geoJSON).getFeatures()){
+                    if (feature.getGeometry() instanceof Point){
+                        Position pos = ((Point) feature.getGeometry()).getPosition();
+                        Place place = new Place(feature.getProperties().get("nombre").toString());
+
+                        place.setCoords(new Coords(pos.getLatitude(), pos.getLongitude()));
+                        place.setDesc(feature.getProperties().get("descripcion") != null?
+                                feature.getProperties().get("descripcion").toString(): "");
+                        menuView.addMarker(place);
+                        places.add(place);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return places;
     }
 
     public void getRoutes(String origin, String destination, boolean sensor){

@@ -490,6 +490,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
 
         @BindView(R.id.title)
         TextView tvTitle;
+        @BindView(R.id.description)
+        TextView tvDesc;
         @BindView(R.id.tv_proximity)
         TextView tv_proximity;
 
@@ -503,6 +505,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
 //            Challenge challenge = challenge_marker.get(marker.getTitle());
             Place place = (Place) marker.getTag();
             tvTitle.setText(marker.getTitle());
+            tvDesc.setText(place.getDesc());
             tv_proximity.setText(place.getProximity());
 
             return myContentsView;
